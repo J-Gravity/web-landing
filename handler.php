@@ -35,14 +35,14 @@ try {
     $finfo = new finfo(FILEINFO_MIME_TYPE);
 
     /* finfo class reference, will be removing soon
-    ** --------------------------------------------
+    ** <--------------------------------------------
     ** finfo {
     **    public __construct ([ int $options = FILEINFO_NONE [, string $magic_file = NULL ]] )
     **    public string buffer ( string $string = NULL [, int $options = FILEINFO_NONE [, resource $context = NULL ]] )
     **    public string file ( string $file_name = NULL [, int $options = FILEINFO_NONE [, resource $context = NULL ]] )
     **    public bool set_flags ( int $options )
     ** }
-    ** --------------------------------------------
+    ** -------------------------------------------->
     */
 
     if (false === $ext = array_search(                  /* Setting .extension variable and performing a strict equality operation */
