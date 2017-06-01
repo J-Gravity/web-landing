@@ -15,13 +15,17 @@ form.onsubmit = function(event) {
 
   // Check the file type.
   file = files[0];
-  if (!file.type.match('*.jgrv')) {
-    alert('Not a valid file type, please use the .jgrv extension');
-  }
-  else {
-    formData.append('file-select', file, file.name);
-  }
-  /* ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^*/
+
+  /*
+  **if (!file.type.match('*.jgrv')) { // .match is hanging up here. Check console.log() for immediate details
+  **  alert('Not a valid file type, please use the .jgrv extension');
+  **}
+  **else {
+  **  formData.append('file-select', file, file.name);
+  **}
+  */
+  formData.append('file-select', file, file.name);
+  /* ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^ */
   /**************************************************
   ** TODO : Validate file input for .jgrav extension;
   ** TODO : ;
@@ -30,7 +34,7 @@ form.onsubmit = function(event) {
   // Set up the request.
   var xhr = new XMLHttpRequest();
   // Open the connection.
-  xhr.open('POST', "file:///nfs/2017/s/scollet/web-landing/handler.php", true); /* ARGUMENTS : HTTP Method=POST, URL Handler=handler.php, Asynchronous request?=true */
+  xhr.open('PUT', "https://scollet1.github.io/web-landing-testing/handler.php", true); /* ARGUMENTS : HTTP Method=POST, URL Handler=handler.php, Asynchronous request?=true */
   // Set up a handler for when the request finishes.
   xhr.onload = function() {
     if (xhr.status === 200) {
@@ -41,5 +45,5 @@ form.onsubmit = function(event) {
     }
   };
   // Send the Data.
-  xhr.send(formData);
+  xhr.send(formData); /* ERROR : XHR cannot load handler.php. Cross origin requests... See console.log() for details */
 }
