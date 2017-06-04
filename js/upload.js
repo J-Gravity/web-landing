@@ -9,12 +9,12 @@ form.onsubmit = function(event) {
   uploadButton.innerHTML = 'Uploading...';
 
   // Get the selected files from the input;
-  var files = fileSelect.files;
+  //var files = fileSelect.files;
   // Create a new FormData object;
-  var formData = new FormData();
+  //var formData = new FormData();
 
   // Check the file type.
-  file = files[0];
+  //file = files[0];
 
   /*
   **if (!file.type.match('*.jgrv')) { // .match is hanging up here. Check console.log() for immediate details
@@ -24,7 +24,7 @@ form.onsubmit = function(event) {
   **  formData.append('file-select', file, file.name);
   **}
   */
-  formData.append('file-select', file, file.name);
+  //formData.append('file-select', file, file.name);
   /* ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^ */
   /**************************************************
   ** TODO : Validate file input for .jgrav extension;
@@ -32,18 +32,18 @@ form.onsubmit = function(event) {
   **************************************************/
 
   // Set up the request.
-  var xhr = new XMLHttpRequest();
+  //var xhr = new XMLHttpRequest();
   // Open the connection.
-  xhr.open('POST', "https://scollet1.github.io/web-landing-testing/handler.php", true); /* ARGUMENTS : HTTP Method=POST, URL Handler=handler.php, Asynchronous request?=true */
+  //xhr.open('POST', "https://scollet1.github.io/web-landing-testing/handler.php", true); /* ARGUMENTS : HTTP Method=POST, URL Handler=handler.php, Asynchronous request?=true */
   // Set up a handler for when the request finishes.
-  xhr.onload = function() {
-    if (xhr.status === 200) {
+  //xhr.onload = function() {
+  //  if (xhr.status === 200) {
       // File(s) uploaded.
-      uploadButton.innerHTML = 'Upload';
-    } else {
-      alert('An error occurred!');
-    }
-  };
+  //    uploadButton.innerHTML = 'Upload';
+  //  } else {
+  //    alert('An error occurred!');
+  //  }
+  //};
   // Send the Data.
-  xhr.send(formData); /* ERROR : XHR cannot load handler.php. Cross origin requests... See console.log() for details */
+  //xhr.send(formData); /* ERROR : XHR cannot load handler.php. Cross origin requests... See console.log() for details */
 }
