@@ -1,5 +1,5 @@
 var form = document.getElementById('file-form');
-var fileSelect = document.getElementById('file-select');
+//var fileSelect = document.getElementById('file-select');
 var uploadButton = document.getElementById('upload-button');
 
 form.onsubmit = function(event) {
@@ -39,7 +39,7 @@ form.onsubmit = function(event) {
   //xhr.onload = function() {
   //  if (xhr.status === 200) {
       // File(s) uploaded.
-  //    uploadButton.innerHTML = 'Upload';
+  //uploadButton.innerHTML = 'Upload';
   //  } else {
   //    alert('An error occurred!');
   //  }
