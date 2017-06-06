@@ -39,23 +39,21 @@ function  animate(orbit, radius,
       color, thickness,
         alpha, angle) {
   /* COMMENT THE LINE BELOW FOR A GOOD TIME */
-  orbit.save();
+  //orbit.save();
   orbit.translate(100, 100);
-  orbit.rotate(angle * Math.PI / 180);
+  orbit.rotate(angle * Math.PI / 2345);
   orbit.translate(-100, -100);
-  orbit.clearRect(0, 0, 200, 200);
   draw(orbit, radius, x, y, start, end, color, thickness, alpha);
   /* COMMENT THE LINE BELOW FOR A GOOD TIME */
-  orbit.restore();
+  //orbit.restore();
 }
 
 function logo_display() {
   var canvas = document.getElementById('jgravlogo');
-  var outer = planet = inner = satellite = orbit = canvas.getContext('2d');
+  var outer = planet = inner = pos = neg = animation = canvas.getContext('2d');
   var width = canvas.width;
   var height = canvas.height;
   var angle = 0;
-  orbit.globalAlpha = 0.5
 
   /* OUTER RING */
   //draw(outer, 90, width / 2, height / 2, Math.PI * 1.40, Math.PI * 1.2, 'white', 10, 1);
@@ -69,18 +67,26 @@ function logo_display() {
   //draw(orbit, 45, width / 2, height / 2, 0, Math.PI * 2, '#0B104B', 5, 1);
 
   window.setInterval(function() {
-    angle = (angle + 1) % 360;
+    angle = (angle + 1) % 4680;
+    animation.save();
+    //animation.clearRect(0, 0, 200, 200);
+    animation.clearRect(0, 0, 200, 200);
     /* INNER PLANET */
     animate(planet, 60, width / 2, height / 2, 0, Math.PI * 2, 'white', 10, 1, angle);
     /* OUTER ORBIT */
+    //outer.clearRect(0, 0, 20, 20);
     animate(outer, 90, width / 2, height / 2, Math.PI * 1.40, Math.PI * 1.2, 'white', 10, 1, angle);
     /* INNER ORBIT */
+    //inner.clearRect(0, 0, 20, 20);
     animate(inner, 45, width / 2, height / 2, 0, Math.PI * 2, '#0B104B', 5, 1, angle);
     /* OUTER SATELLITE */
-    animate(satellite, 20, 46.8, 26, 0, Math.PI * 2, 'white', 1, 1, angle);
+    //pos.clearRect(0, 0, 50, 20);
+    animate(pos, 20, 46.8, 26, 0, Math.PI * 2, 'white', 1, 1, -1 * angle);
     /* INNER SATELLITE */
-    //animate(orbit, 10, 126, 136, 0, Math.PI * 2, '#0B104B', 10, 1, angle);
-  }, 50)
+    //neg.clearRect(0, 0, 50, 50);
+    animate(neg, 10, 126, 136, 0, Math.PI * 2, '#0B104B', 10, 1, -1 * angle);
+    animation.restore();
+  }, 100)
 }
 
 function  draw(orbit, radius,
