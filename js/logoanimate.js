@@ -10,101 +10,52 @@
 //                                                                            //
 // ************************************************************************** //
 
-/*
-function  animate(orbit) {
-  var i = 0;
-  var angle = 0;
-  window.setInterval(function() {
-    angle = (angle + 1) % 360;
-    orbit.save();
-    orbit.translate(100, 100);
-    orbit.rotate(angle * Math.PI / 180);
-    orbit.translate(-100, -100);
-    orbit.clearRect(0, 0, 200, 200);
-    draw(orbit, 20, 46.8, 26, 0, Math.PI * 2, 'white', 1, 1);
-    orbit.restore();
-    /*
-    orbit.translate(150,200);
-    orbit.rotate(angle*Math.PI/180);
-    orbit.translate(-150,-200);
-    */
-
-    //draw(satellite, 20, 46.8, 26, 0, Math.PI * 2, 'white', 1, 1);
-//  }, 10)
-//}
+var canvas = document.getElementById('jgravlogo');
 
 function  animate(orbit, radius,
   x, y,
     start, end,
       color, thickness,
         alpha, angle) {
-  /* COMMENT THE LINE BELOW FOR A GOOD TIME */
-  //orbit.save();
-  orbit.translate(100, 100);
-  orbit.rotate(angle * Math.PI / 2345);
-  orbit.translate(-100, -100);
+  orbit.translate(canvas.width / 2, canvas.height / 2);
+  orbit.rotate(angle * Math.PI / 180/*2345*/);
+  orbit.translate(-(canvas.width / 2), -(canvas.height / 2));
   draw(orbit, radius, x, y, start, end, color, thickness, alpha);
-  /* COMMENT THE LINE BELOW FOR A GOOD TIME */
-  //orbit.restore();
 }
 
 function logo_display() {
-  var canvas = document.getElementById('jgravlogo');
   var outer = planet = inner = pos = neg = animation = canvas.getContext('2d');
   var width = canvas.width;
   var height = canvas.height;
   var angle = 0;
 
-  /* OUTER RING */
-  //draw(outer, 90, width / 2, height / 2, Math.PI * 1.40, Math.PI * 1.2, 'white', 10, 1);
-  /* PLANET */
-  //draw(planet, 60, width / 2, height / 2, 0, Math.PI * 2, 'white', 10, 1);
-  /* INNER SATELLITE */
-  //draw(inner, 10, 126, 136, 0, Math.PI * 2, '#0B104B', 10, 1);
-  /* OUTER SATELLITE */
-  //draw(satellite, 20, 46.8, 26, 0, Math.PI * 2, 'white', 1, 1);
-  /* INNER RING */
-  //draw(orbit, 45, width / 2, height / 2, 0, Math.PI * 2, '#0B104B', 5, 1);
-
   window.setInterval(function() {
-    angle = (angle + 1) % 4680;
+    angle = (angle + 1) % 360/*4680*/;
+    /* COMMENT THE LINE BELOW FOR A GOOD TIME */
     animation.save();
-    //animation.clearRect(0, 0, 200, 200);
-    animation.clearRect(0, 0, 200, 200);
+    animation.clearRect(0, 0, 250, 250);
     /* INNER PLANET */
-    animate(planet, 60, width / 2, height / 2, 0, Math.PI * 2, 'white', 10, 1, angle);
+    animate(planet, 60, width / 2, height / 2, 0, Math.PI * 2, 'white', 10, 1, angle, false);
     /* OUTER ORBIT */
-    //outer.clearRect(0, 0, 20, 20);
-    animate(outer, 90, width / 2, height / 2, Math.PI * 1.40, Math.PI * 1.2, 'white', 10, 1, angle);
+    animate(outer, 90, width / 2, height / 2, Math.PI * 1.38, Math.PI * 1.2, 'white', 10, 1, angle, false);
     /* INNER ORBIT */
-    //inner.clearRect(0, 0, 20, 20);
-    animate(inner, 45, width / 2, height / 2, 0, Math.PI * 2, '#0B104B', 5, 1, angle);
+    animate(inner, 45, width / 2, height / 2, 0, Math.PI * 2, '#051644', 5, 1, angle, true);
     /* OUTER SATELLITE */
-    //pos.clearRect(0, 0, 50, 20);
-    animate(pos, 20, 46.8, 26, 0, Math.PI * 2, 'white', 1, 1, -1 * angle);
+    animate(pos, 20, 69.9, 53.3, 0, Math.PI * 2, 'white', 1, 1, -1 * angle, false);
     /* INNER SATELLITE */
-    //neg.clearRect(0, 0, 50, 50);
-    animate(neg, 10, 126, 136, 0, Math.PI * 2, '#0B104B', 10, 1, -1 * angle);
+    animate(neg, 10, 153, 159, 0, Math.PI * 2, '#051644', 10, 1, -1 * angle, true);
+    /* COMMENT THE LINE BELOW FOR A GOOD TIME */
     animation.restore();
-  }, 100)
+  }, 10)
 }
 
 function  draw(orbit, radius,
   x, y,
     start, end,
-      color, thickness, alpha) {
-  //var   i = 0;
-  //var   j = 0;
-  //while ()
+      color, thickness, alpha, anticlockwise) {
   for (var i = 0; i < 1; i++) {
     for (var j = 0; j < 1; j++) {
       orbit.beginPath();
-      //var x = width; // x coordinate
-      //var y = height; // y coordinate
-      //var radius = 75; // Arc radius
-      //var startAngle = 0; // Starting point on circle
-      //var endAngle = Math.PI * 1.85/* + (Math.PI * j) / 2*/; // End point on circle
-      var anticlockwise = i % 2 !== 0; // clockwise or anticlockwise
       orbit.globalAlpha = alpha;
       orbit.fillStyle = color;
       orbit.strokeStyle = color;
@@ -118,24 +69,6 @@ function  draw(orbit, radius,
     }
   }
 }
-
-/*function  animate(orbit, angle) {
-  orbit.save();
-  orbit.translate(100, 100);
-  orbit.rotate(angle * Math.PI / 180);
-  orbit.translate(-100, -100);
-  orbit.clearRect(0, 0, 200, 200);
-  draw(orbit, 20, 46.8, 26, 0, Math.PI * 2, 'white', 1, 1);
-  orbit.restore();
-  */
-  /*
-  orbit.translate(150,200);
-  orbit.rotate(angle*Math.PI/180);
-  orbit.translate(-150,-200);
-  */
-  //draw(satellite, 20, 46.8, 26, 0, Math.PI * 2, 'white', 1, 1);
-  //return (angle);
-//}
 
 /*
 **  Test Function(s):
