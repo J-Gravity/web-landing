@@ -18,7 +18,7 @@ function  animate(orbit, radius,
       color, thickness,
         alpha, angle) {
   orbit.translate(canvas.width / 2, canvas.height / 2);
-  orbit.rotate(angle * Math.PI / 180/*2345*/);
+  orbit.rotate(angle * Math.PI / 2345);
   orbit.translate(-(canvas.width / 2), -(canvas.height / 2));
   draw(orbit, radius, x, y, start, end, color, thickness, alpha);
 }
@@ -30,7 +30,7 @@ function logo_display() {
   var angle = 0;
 
   window.setInterval(function() {
-    angle = (angle + 1) % 360/*4680*/;
+    angle = (angle + 1) % 4680;
     /* COMMENT THE LINE BELOW FOR A GOOD TIME */
     animation.save();
     animation.clearRect(0, 0, 250, 250);
@@ -46,7 +46,7 @@ function logo_display() {
     animate(neg, 10, 153, 159, 0, Math.PI * 2, '#051644', 10, 1, -1 * angle, true);
     /* COMMENT THE LINE BELOW FOR A GOOD TIME */
     animation.restore();
-  }, 10)
+  }, 100)
 }
 
 function  draw(orbit, radius,
