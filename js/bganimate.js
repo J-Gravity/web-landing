@@ -1,6 +1,16 @@
-//bganimate.js
+// ************************************************************************** //
+//                                                                            //
+//                                                        :::      ::::::::   //
+//   bganimate.js                                       :+:      :+:    :+:   //
+//                                                    +:+ +:+         +:+     //
+//   By: scollet <marvin@42.fr>                     +#+  +:+       +#+        //
+//                                                +#+#+#+#+#+   +#+           //
+//   Created: 2017/06/08 15:53:19 by scollet           #+#    #+#             //
+//   Updated: 2017/06/08 15:53:21 by scollet          ###   ########.fr       //
+//                                                                            //
+// ************************************************************************** //
 
- /* -----------------------------------------------
+/* -----------------------------------------------
 /* Author : Vincent Garreau  - vincentgarreau.com
 /* MIT license: https://opensource.org/licenses/MIT
 /* Demo / Generator : vincentgarreau.com/particles.js
@@ -8,6 +18,8 @@
 /* How to use? : Check the GitHub README
 /* v2.0.0
 /* ----------------------------------------------- */
+
+
 
 var pJS = function(tag_id, params){
 
@@ -35,7 +47,7 @@ var pJS = function(tag_id, params){
         type: 'circle',
         stroke: {
           width: 0,
-          color: '#ff0000'
+          color: '#ffffff'
         },
         polygon: {
           nb_sides: 5
@@ -159,9 +171,9 @@ var pJS = function(tag_id, params){
   pJS.fn.retinaInit = function(){
 
     if(pJS.retina_detect && window.devicePixelRatio > 1){
-      pJS.canvas.pxratio = window.devicePixelRatio; 
+      pJS.canvas.pxratio = window.devicePixelRatio;
       pJS.tmp.retina = true;
-    } 
+    }
     else{
       pJS.canvas.pxratio = 1;
       pJS.tmp.retina = false;
@@ -365,7 +377,7 @@ var pJS = function(tag_id, params){
     this.vx_i = this.vx;
     this.vy_i = this.vy;
 
-    
+
 
     /* if shape is image */
 
@@ -394,7 +406,7 @@ var pJS = function(tag_id, params){
       }
     }
 
-    
+
 
   };
 
@@ -404,7 +416,7 @@ var pJS = function(tag_id, params){
     var p = this;
 
     if(p.radius_bubble != undefined){
-      var radius = p.radius_bubble; 
+      var radius = p.radius_bubble;
     }else{
       var radius = p.radius;
     }
@@ -493,9 +505,9 @@ var pJS = function(tag_id, params){
       pJS.canvas.ctx.lineWidth = pJS.particles.shape.stroke.width;
       pJS.canvas.ctx.stroke();
     }
-    
+
     pJS.canvas.ctx.fill();
-    
+
   };
 
 
@@ -613,11 +625,6 @@ var pJS = function(tag_id, params){
         for(var j = i + 1; j < pJS.particles.array.length; j++){
           var p2 = pJS.particles.array[j];
 
-          /* link particles */
-          if(pJS.particles.line_linked.enable){
-            pJS.fn.interact.linkParticles(p,p2);
-          }
-
           /* attract particles */
           if(pJS.particles.move.attract.enable){
             pJS.fn.interact.attractParticles(p,p2);
@@ -666,7 +673,7 @@ var pJS = function(tag_id, params){
     pJS.tmp.count_svg = 0;
     pJS.fn.particlesEmpty();
     pJS.fn.canvasClear();
-    
+
     /* restart */
     pJS.fn.vendors.start();
 
@@ -675,37 +682,24 @@ var pJS = function(tag_id, params){
 
   /* ---------- pJS functions - particles interaction ------------ */
 
-  pJS.fn.interact.linkParticles = function(p1, p2){
+  /*pJS.fn.interact.linkParticles = function(p1, p2){
 
     var dx = p1.x - p2.x,
         dy = p1.y - p2.y,
         dist = Math.sqrt(dx*dx + dy*dy);
 
-    /* draw a line between p1 and p2 if the distance between them is under the config distance */
-    if(dist <= pJS.particles.line_linked.distance){
-
+    /* draw a line between p1 and p2 if the distance between them is under the config distance
+    if(dist <= pJS.particles.line_linked.distance) {
       var opacity_line = pJS.particles.line_linked.opacity - (dist / (1/pJS.particles.line_linked.opacity)) / pJS.particles.line_linked.distance;
-
-      if(opacity_line > 0){        
-        
-        /* style */
-        var color_line = pJS.particles.line_linked.color_rgb_line;
-        pJS.canvas.ctx.strokeStyle = 'rgba('+color_line.r+','+color_line.g+','+color_line.b+','+opacity_line+')';
-        pJS.canvas.ctx.lineWidth = pJS.particles.line_linked.width;
-        //pJS.canvas.ctx.lineCap = 'round'; /* performance issue */
-        
-        /* path */
+      if (opacity_line > 0) {
         pJS.canvas.ctx.beginPath();
         pJS.canvas.ctx.moveTo(p1.x, p1.y);
         pJS.canvas.ctx.lineTo(p2.x, p2.y);
         pJS.canvas.ctx.stroke();
         pJS.canvas.ctx.closePath();
-
       }
-
     }
-
-  };
+  };*/
 
 
   pJS.fn.interact.attractParticles  = function(p1, p2){
@@ -727,7 +721,7 @@ var pJS = function(tag_id, params){
       p2.vy += ay;
 
     }
-    
+
 
   }
 
@@ -807,7 +801,7 @@ var pJS = function(tag_id, params){
       if(dist_mouse <= pJS.interactivity.modes.bubble.distance){
 
         if(ratio >= 0 && pJS.interactivity.status == 'mousemove'){
-          
+
           /* size */
           if(pJS.interactivity.modes.bubble.size != pJS.particles.size.value){
 
@@ -856,7 +850,7 @@ var pJS = function(tag_id, params){
       if(pJS.interactivity.status == 'mouseleave'){
         init();
       }
-    
+
     }
 
     /* on click event */
@@ -935,7 +929,7 @@ var pJS = function(tag_id, params){
           repulseRadius = pJS.interactivity.modes.repulse.distance,
           velocity = 100,
           repulseFactor = clamp((1/repulseRadius)*(-1*Math.pow(dist_mouse/repulseRadius,2)+1)*repulseRadius*velocity, 0, 50);
-      
+
       var pos = {
         x: p.x + normVec.x * repulseFactor,
         y: p.y + normVec.y * repulseFactor
@@ -948,7 +942,7 @@ var pJS = function(tag_id, params){
         p.x = pos.x;
         p.y = pos.y;
       }
-    
+
     }
 
 
@@ -1003,7 +997,7 @@ var pJS = function(tag_id, params){
         // }else{
         //   process();
         // }
-        
+
 
       }else{
 
@@ -1011,7 +1005,7 @@ var pJS = function(tag_id, params){
 
           p.vx = p.vx_i;
           p.vy = p.vy_i;
-        
+
         }
 
       }
@@ -1041,7 +1035,7 @@ var pJS = function(tag_id, params){
           pJS.canvas.ctx.strokeStyle = 'rgba('+251+','+195+','+94+','+opacity_line+')';
           pJS.canvas.ctx.lineWidth = pJS.particles.line_linked.width;
           //pJS.canvas.ctx.lineCap = 'round'; /* performance issue */
-          
+
           /* path */
           pJS.canvas.ctx.beginPath();
           pJS.canvas.ctx.moveTo(p.x, p.y);
@@ -1157,7 +1151,7 @@ var pJS = function(tag_id, params){
         }
 
       });
-        
+
     }
 
 
@@ -1361,7 +1355,7 @@ var pJS = function(tag_id, params){
           pJS.fn.vendors.init();
           pJS.fn.vendors.draw();
         }
-        
+
       }
 
     }else{
@@ -1408,7 +1402,7 @@ var pJS = function(tag_id, params){
   pJS.fn.vendors.eventsListeners();
 
   pJS.fn.vendors.start();
-  
+
 
 
 };
@@ -1521,9 +1515,9 @@ window.particlesJS = function(tag_id, params){
 
 };
 
-window.particlesJS.load = function(tag_id, path_config_json, callback){
+/*window.particlesJS.load = function(tag_id, path_config_json, callback){
 
-  /* load json config */
+  /* load json config
   var xhr = new XMLHttpRequest();
   xhr.open('GET', path_config_json);
   xhr.onreadystatechange = function (data) {
@@ -1540,9 +1534,7 @@ window.particlesJS.load = function(tag_id, path_config_json, callback){
   };
   xhr.send();
 
-};
-
-
+};*/
 
 particlesJS("particles-js", {
   "particles": {
@@ -1565,12 +1557,12 @@ particlesJS("particles-js", {
       "polygon": {
         "nb_sides": 5
       },
-      "image": {
+      /*"image": {
         "src": "img/github.svg",
         "width": 100,
         "height": 100
       }
-    },
+*/    },
     "opacity": {
       "value": 0.5,
       "random": false,
@@ -1591,13 +1583,13 @@ particlesJS("particles-js", {
         "sync": false
       }
     },
-    "line_linked": {
+    /*"line_linked": {
       "enable": true,
       "distance": 150,
       "color": "#ffffff",
       "opacity": 0.4,
       "width": 1
-    },
+    },*/
     "move": {
       "enable": true,
       "speed": 2,
@@ -1656,4 +1648,3 @@ particlesJS("particles-js", {
 });
 
 requestAnimationFrame();
-
