@@ -10,23 +10,23 @@
 //                                                                            //
 // ************************************************************************** //
 
-var canvas = document.getElementById('jgravlogo');
+var logo_canvas = document.getElementById('jgravlogo');
 
 function  animate(orbit, radius,
   x, y,
     start, end,
       color, thickness,
         alpha, angle) {
-  orbit.translate(canvas.width / 2, canvas.height / 2);
+  orbit.translate(logo_canvas.width / 2, logo_canvas.height / 2);
   orbit.rotate(angle * Math.PI / 2345);
-  orbit.translate(-(canvas.width / 2), -(canvas.height / 2));
+  orbit.translate(-(logo_canvas.width / 2), -(logo_canvas.height / 2));
   draw(orbit, radius, x, y, start, end, color, thickness, alpha);
 }
 
 function logo_display() {
-  var outer = planet = inner = pos = neg = animation = canvas.getContext('2d');
-  var width = canvas.width;
-  var height = canvas.height;
+  var outer = planet = inner = pos = neg = animation = logo_canvas.getContext('2d');
+  var width = logo_canvas.width;
+  var height = logo_canvas.height;
   var angle = 0;
 
   window.setInterval(function() {
@@ -77,9 +77,9 @@ function  draw(orbit, radius,
 /*
 
 function draw() {
-  var canvas = document.getElementById('jgravlogo');
-  if (canvas.getContext) {
-    var ctx = canvas.getContext('2d');
+  var logo_canvas = document.getElementById('jgravlogo');
+  if (logo_canvas.getContext) {
+    var ctx = logo_canvas.getContext('2d');
 
     ctx.fillRect(25, 25, 100, 100);
     ctx.clearRect(45, 45, 60, 60);
